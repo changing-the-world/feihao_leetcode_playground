@@ -1,5 +1,6 @@
 //
 // Created by Feihao on 2019/3/28.
+// leet code 850 题，给定一些边水平于x，y坐标轴的矩形的坐标，求这些覆盖的面积，耗时击败66% 选手，内存占用击败100%选手， 有优化空间。
 //
 
 #ifndef CPPS_LEETCODE850_H
