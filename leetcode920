@@ -1,0 +1,66 @@
+class Solution {
+public:
+    int numMusicPlaylists(int N, int L, int K) {
+        int mod = 1000000007;
+        int64_t innerCnt = 1L;
+        if(L > N){
+            innerCnt = 0L;
+            int64_t * buf1 = new int64_t[N];
+            int64_t * buf2 = new int64_t[N];
+            int64_t * pLast;
+            int64_t * pCurrent;
+
+            
+            for(int j = 0; j<N;j++){
+                if(j<K)
+                    buf1[j] = 0L;
+                else
+                    buf1[j] = j+1L-K;
+
+                
+            }
+            pCurrent = buf1;
+            for(int i = 2; i<= L - N; i++){
+                if(i%2 == 0){
+                    pLast = buf1;
+                    pCurrent = buf2;
+                }else{
+                    pLast = buf2;
+                    pCurrent = buf1;
+                }
+                
+                for(int j = 0; j<N; j++){
+                    if(j < K){
+                        pCurrent[j] = 0L;
+                    }else{
+                        if(j == K)
+                            pCurrent[j]=1L;
+                        else
+                            pCurrent[j]=(pLast[j] + pCurrent[j - 1]) % mod;
+                    }
+                    
+                }
+                
+                for(int j = K; j< N;j++){
+                    if(j>K)
+                        pCurrent[j] = ((pCurrent[j]) * (j - K + 1) % mod);
+                    
+                }
+            }
+            
+            for(int j = 0; j < N; j++){
+                
+                innerCnt = (innerCnt + pCurrent[j]) % mod;
+                
+            }
+
+            delete [] buf1;
+            delete [] buf2;
+        }
+        int64_t res = innerCnt;
+        for(int j = 1; j<=N; j++){
+            res = (res * j) % mod;
+        }
+        return (int)(res);
+    }
+};
