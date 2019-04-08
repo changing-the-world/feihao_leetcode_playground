@@ -1,3 +1,7 @@
+# 耗时48ms，击败94%的选手， 内存一般，只击败50%+
+# 主要思想 动规，单独处理了尾巴上相同的字符
+
+
 class Solution(object):
     def minCut(self, s):
         """
